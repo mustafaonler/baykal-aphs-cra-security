@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAB 2 · IEC 62443 Mini Workshop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:wght@400;700&family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ortak/foy.css">
+</head>
+<body style="--lab:#0e7c7b">
+
+<header class="bant">
+  <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></svg></div>
+  <div class="ust">LABORATUVAR 2 · PAKETPRO 3000 · Paketleme Makinesi</div>
+  <h1>IEC 62443 Mini Workshop</h1>
+  <div class="cikti">Çıktı: Zone / Conduit Diagram</div>
+</header>
+
+<section class="kimlik">
+  <div><span>Ad Soyad</span><em>Mustafa Önler</em></div>
+  <div><span>Grup</span><em>Gece-B</em></div>
+  <div><span>Tarih</span></div>
+</section>
+
+<div class="baglam"><b>Kavram: Zone</b> = benzer kritiklikteki cihazları bir bölgeye topla. <b>Conduit</b> = bölgeler arası her geçişe kontrollü bir kapı. 62443'ün maddesini ezberlemiyoruz — mantığını uyguluyoruz.</div>
+
+<h2 class="bolum">Görev A — varlıkları bölgelere ayırın</h2>
+
+<div class="kutu"><h3>Varlık listesi</h3>Üretim PLC, Emniyet PLC'si, HMI, Motor sürücüleri/Eksenler, İnternete açık uzak bakım modülü, Bulut telemetri, Wi-Fi AP, Kilitsiz USB, Servis hesabı</div>
+
+<div class="soru"><div class="no">1</div><div class="metin">Hangi varlıklar aynı bölgede? Bölgeleri adlandırıp gruplandırın.</div>
+  <div class="cevap"><p>Baykal Abkant Pres mimarisinde varlıkları kritiklik düzeylerine göre şu bölgelere (Zone) ayırıyoruz:</p>
+    <ul><li><b>Bölge 1 (Machine Control / Cell Zone - Hücre Kontrol Bölgesi):</b> Üretim PLC'si, HMI (dokunmatik CNC ekran) ve eksen motor sürücüleri bu bölgededir. Makinenin anlık büküm ve hidrolik işlemlerini yürütürler.</li><li><b>Bölge 2 (Safety Zone - Emniyet Bölgesi):</b> Emniyet PLC'si (Safety PLC) bu bölgededir. İnsan güvenliğini sağlayan bu kritik donanım, dış ağlardan izole edilmiştir.</li><li><b>Bölge 3 (Enterprise / DMZ &amp; Cloud Zone - Kurumsal ve Dış Bağlantı Bölgesi):</b> İnternete açık uzak bakım modülü, bulut telemetri servisleri, Wi-Fi erişim noktası, kilitsiz USB arayüzleri ve varsayılan servis hesapları bu dış ve riskli grupta yer alır.</li></ul></div></div>
+
+<div class="soru"><div class="no">2</div><div class="metin">Açık uzak bakım modülü hangi bölgeye düşüyor — neden? Orada KALABİLİR Mİ? Neden?</div>
+  <div class="cevap"><ul><li>Hangi bölgeye düşüyor ve kalabilir mi?: Açık uzak bakım modülü <b>Enterprise / Dış Bağlantı Bölgesi'ne</b> düşer.</li><li>Neden kalmamalı?: Bu modül doğrudan internete açık olduğu ve üzerinde zafiyet barındırabileceği için bu bölgede <b>asla olduğu gibi (güvencesiz) KALAMAZ</b>. Doğrudan 7/24 internete açık olması, saldırganların doğrudan makine kontrolüne erişmesine yol açar; bu nedenle arkasına bir Jump Server (Atlama Sunucusu) ve VPN tüneli konulmadan açık bırakılamaz.</li></ul></div></div>
+
+<div class="soru"><div class="no">3</div><div class="metin">Bölgeler arası geçişler (conduit) nerede? Her geçişte ne kontrol edilecek?</div>
+  <div class="cevap"><ul><li><b>Geçiş 1 (Enterprise / Uzak Bakım ➔ Machine Control Zone / HMI &amp; PLC Köprüsü):</b> Dış ağ/bakım modülü ile CNC kontrol ünitesi arasındadır. Bu geçişte (Conduit), gelen verinin bütünlüğü, kimlik doğrulaması (MFA) ve zararlı yazılım taranması denetlenir.</li><li><b>Geçiş 2 (Machine Control Zone ➔ Safety Zone / Emniyet Kesişimi):</b> Üretim PLC'si ile Emniyet PLC'si arasındaki haberleşme hattıdır. Bu geçişte, normal üretim yazılımının emniyet parametrelerini manipüle etmesini engelleyen katı protokol filtrelemesi denetlenir.</li></ul></div></div>
+
+<h2 class="bolum">Görev B — uzak erişim kararı (6 satır)</h2>
+
+<table class="tablo">
+  <colgroup><col style="width:113.3pt"><col style="width:195.9pt"><col></colgroup>
+  <thead><tr><th>Karar</th><th>Seçenekler</th><th>Seçiminiz + nedeni</th></tr></thead>
+  <tbody>
+    <tr><td class="etk">Aracı?</td><td class="sabit">Doğrudan / Jump server</td><td><b>Jump Server</b>. Doğrudan dışarıdan makineye bağlanmak yerine, fabrikadaki ara güvenli atlama sunucusu aracı olarak kullanılır.</td></tr>
+    <tr><td class="etk">Tünel?</td><td class="sabit">Açık / VPN</td><td><b>VPN</b>. Açık internet üzerinden yapılan güvensiz bağlantılar yerine uçtan uca şifrelenmiş tünelleme tercih edilir.</td></tr>
+    <tr><td class="etk">Kimlik?</td><td class="sabit">Parola / MFA</td><td><b>MFA</b>. Sabit ve zayıf parolalar yerine çok faktörlü kimlik doğrulama zorunlu tutulur.</td></tr>
+    <tr><td class="etk">Hesap?</td><td class="sabit">Paylaşılan / Kişisel</td><td><b>Kişisel</b>. Ortak ve varsayılan (admin/admin gibi) servis hesapları kapatılır, her mühendise özel izlenebilir hesap verilir.</td></tr>
+    <tr><td class="etk">Kayıt?</td><td class="sabit">Yok / Tam oturum kaydı</td><td><b>Tam oturum kaydı</b>. Uzaktan bakım süresince yapılan tüm CNC ve sistem müdahaleleri eksiksiz olarak kaydedilir.</td></tr>
+    <tr><td class="etk">Zamanlama?</td><td class="sabit">Sürekli açık / Varsayılan kapalı</td><td><b>Varsayılan kapalı</b>. Portlar 7/24 açık kalmaz; sadece bakım süresince geçici olarak (Just-In-Time) açılır.</td></tr>
+  </tbody>
+</table>
+
+<div class="kanit"><svg viewBox="0 0 24 24" fill="none" stroke="#0e7c7b" stroke-width="2" stroke-linejoin="round"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8l-5-5z"/><path d="M14 3v5h5"/></svg><span>Bu föyün çıktısı <b>Zone / Conduit Diagram</b> → Evidence Pack <b>EP 05 Zone &amp; Conduit</b> başlığına oturur.</span></div>
+
+</body>
+</html>

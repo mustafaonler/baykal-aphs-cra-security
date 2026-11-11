@@ -150,7 +150,7 @@ b, strong { font-weight: 700; }
   margin-top: 11.8pt;
   background: var(--zemin);
   border-radius: 6pt;
-  padding: 9.4pt 18pt 9.6pt 27.7pt;
+  padding: 9.4pt 12pt 9.6pt 27.7pt;
   font-size: 9.3pt;
   line-height: 13.5pt;
 }
@@ -170,7 +170,7 @@ b, strong { font-weight: 700; }
 /* ---------- Bölüm başlığı (Görev — ...) ---------- */
 .bolum {
   display: flex; align-items: center; gap: 10pt;
-  margin: 22pt 0 10pt;
+  margin: 15.8pt 0 9.5pt;
   font: 700 12.5pt/1 "Caladea", "Cambria", serif;
   color: var(--lacivert-2);
   break-after: avoid;
@@ -210,7 +210,7 @@ b, strong { font-weight: 700; }
 /* ---------- Evidence Pack notu ---------- */
 .kanit {
   display: flex; align-items: center; gap: 9pt;
-  margin-top: 12pt;
+  margin-top: 14.6pt;
   min-height: 26.6pt;
   padding: 5pt 12pt 5pt 13pt;
   background: var(--zemin-2);
@@ -265,3 +265,110 @@ body.kapak { padding: 0; }
   overflow: hidden;
 }
 @media screen { body.kapak { min-height: 0; } }
+
+/* =====================================================================
+   LAB 2–7 bileşenleri
+   ===================================================================== */
+.bolum + .soru { margin-top: 10pt; }
+
+/* Bilgi kutusu (Varlık listesi, ipucu) */
+.kutu {
+  margin: 13.3pt 0 13.7pt;
+  padding: 5.3pt 11.8pt 5.6pt;
+  background: var(--zemin-2);
+  border: 0.75pt solid var(--cizgi);
+  border-radius: 6pt;
+  font-size: 9.3pt;
+  line-height: 12.8pt;
+}
+.kutu h3 { margin: 0 0 4.6pt; font: 700 10.5pt/13pt "Caladea", "Cambria", serif; color: var(--lacivert); }
+.kutu i { font-style: italic; }
+
+/* Kırmızı sol çizgili uyarı kutusu (Senaryo, Altın kural, En sık hata) */
+.uyari-kutu {
+  margin-top: 11.8pt;
+  padding: 7.3pt 14pt 7.6pt 11.5pt;
+  background: var(--pembe);
+  border-left: 3.3pt solid var(--kirmizi);
+  border-radius: 0 6pt 6pt 0;
+  font-size: 9pt;
+  line-height: 12.7pt;
+  break-inside: avoid;
+}
+.uyari-kutu b { color: var(--lacivert); }
+.uyari-kutu + .baglam { margin-top: 4pt; }
+
+/* Tablolar */
+.tablo {
+  width: 100%;
+  margin: 9.5pt 0 0;
+  border-collapse: collapse;
+  font-size: 8.8pt;
+  line-height: 11.4pt;
+}
+.tablo th {
+  height: 22.8pt;
+  padding: 0 7.1pt;
+  background: var(--lacivert-2);
+  color: #fff;
+  font-size: 8.3pt;
+  font-weight: 700;
+  text-align: left;
+  vertical-align: middle;
+}
+.tablo td {
+  padding: 6.4pt 7.4pt 6.6pt;
+  border: 0.75pt solid var(--cizgi);
+  vertical-align: top;
+  color: #24364f;
+}
+.tablo td.etk { font-weight: 700; color: var(--lacivert); }
+.tablo td.sabit { color: var(--lacivert); }
+.tablo tr { break-inside: avoid; }
+.tablo thead { display: table-header-group; }
+
+/* Risk skalası */
+.skala { display: flex; gap: 6.3pt; margin: 8.7pt 0 9.9pt; }
+.skala span {
+  height: 15.4pt; padding: 0 8pt;
+  border-radius: 3pt;
+  font-size: 8.3pt; font-weight: 700; line-height: 15.4pt;
+  color: #fff;
+}
+
+/* MEVCUT / HEDEF iki sütunlu kutular */
+.ikili { display: grid; grid-template-columns: 1fr 1fr; column-gap: 11.6pt; margin-top: 13.3pt; }
+.ikili > div {
+  padding: 8.4pt 11.5pt 10pt 11.5pt;
+  background: var(--zemin-2);
+  border: 0.75pt solid var(--cizgi);
+  border-left: 3.3pt solid var(--kirmizi);
+  border-radius: 6pt;
+  font-size: 9pt;
+  line-height: 12.6pt;
+  color: #24364f;
+}
+.ikili > div.hedef { border-left-color: var(--teal); }
+.ikili h3 { margin: 0 0 6pt; font: 700 10.5pt/13pt "Caladea", "Cambria", serif; color: var(--kirmizi); }
+.ikili .hedef h3 { color: var(--teal); }
+.ikili .ipucu { margin: -2pt 0 6pt; font-size: 8.8pt; color: var(--gri); }
+.ikili ul { margin: 0; padding-left: 12pt; }
+.ikili li { margin-bottom: 3pt; }
+.ikili ul.duz { padding-left: 0; list-style: none; }
+
+/* İtalik not satırı (Tarafsızlık notu, LAB 7 senaryo) */
+.not-satir { margin: 12pt 0 0; font-size: 8.6pt; font-style: italic; color: var(--gri); line-height: 12pt; }
+
+/* LAB 7 yatay akış şeması */
+.akis { display: flex; align-items: center; flex-wrap: wrap; gap: 4.2pt; margin-top: 8pt; }
+.akis .k {
+  height: 18.5pt; padding: 0 9.6pt;
+  border-radius: 4pt;
+  font-size: 8.8pt; font-weight: 700; line-height: 18.5pt;
+  color: #fff; white-space: nowrap;
+}
+.akis .ok { width: 10pt; text-align: center; font-size: 11pt; font-weight: 700; color: var(--gri); }
+
+/* Son uyarı/not ile Evidence Pack notu aynı sayfada kalsın */
+.son-blok { break-inside: avoid; }
+.soru { break-inside: avoid; }
