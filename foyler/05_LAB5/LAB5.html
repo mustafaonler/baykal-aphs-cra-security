@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAB 5 · SBOM / CVE / Patch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:wght@400;700&family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ortak/foy.css">
+<style> .kayit td { height: 23.4pt; padding-top: 0; padding-bottom: 0; vertical-align: middle; } </style>
+</head>
+<body style="--lab:#e6a100">
+
+<header class="bant">
+  <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg></div>
+  <div class="ust">LABORATUVAR 5 · PAKETPRO 3000 · Paketleme Makinesi</div>
+  <h1>SBOM / CVE / Patch</h1>
+  <div class="cikti">Çıktı: Vulnerability Decision</div>
+</header>
+
+<section class="kimlik">
+  <div><span>Ad Soyad</span><em>Mustafa Önler</em></div>
+  <div><span>Grup</span><em>Gece-B</em></div>
+  <div><span>Tarih</span></div>
+</section>
+
+<div class="baglam"><b>Kavram: SBOM</b> = yazılım malzeme listesi · <b>CVE</b> = açığın kayıt no'su · <b>CVSS</b> = ciddiyet (0–10). Bir CVE sizi etkiler mi? Üç şart: bileşen <b>var</b>, sürüm <b>etkileniyor</b>, açık <b>ulaşılabilir</b>.</div>
+
+<h2 class="bolum">Verilen zafiyet kaydı</h2>
+
+<table class="tablo kayit">
+  <colgroup><col style="width:133.6pt"><col></colgroup>
+  <tbody>
+    <tr><td class="etk">Bileşen</td><td class="sabit">PaketPro Component X (PLC firmware kütüphanesi)</td></tr>
+    <tr><td class="etk">Sürüm</td><td class="sabit">2.4</td></tr>
+    <tr><td class="etk">CVE</td><td class="sabit">CVE-XXXX-XXXX</td></tr>
+    <tr><td class="etk">Önem</td><td class="sabit">Critical (CVSS 9.8)</td></tr>
+    <tr><td class="etk">Yama</td><td class="sabit">Mevcut</td></tr>
+  </tbody>
+</table>
+
+<h2 class="bolum">Görev — karar akışı</h2>
+
+<div class="soru"><div class="no">1</div><div class="metin">Bu CVE sizi gerçekten etkiliyor mu? (üç şartı kontrol edin)</div>
+  <div class="cevap"><ul><li>Bileşen Var mı?: Evet, Baykal APHS Abkant makinesinin CNC kontrol ünitesinde ve PLC firmware altyapısında "PaketPro Component X / PLC firmware kütüphanesi v2.4" muadili olan CNC/PLC kontrol kütüphanesi kullanılmaktadır.</li><li>Etkileniyor mu?: Evet, yayınlanan zafiyet bildirimi doğrudan v2.4 sürümünü hedeflemektedir.</li><li>Ulaşılabilir mi?: Evet, makinenin uzak bakım modülü ve fabrika ağı arayüzleri üzerinden dışarıdan ağ erişimine açık olması nedeniyle zafiyet uzaktan sömürülebilir (ulaşılabilirdir).</li></ul></div></div>
+
+<div class="soru"><div class="no">2</div><div class="metin">Üretimi hemen durdurur musunuz? Neden / neden değil?</div>
+  <div class="cevap">Hayır, üretimi derhal durdurmayız. Fabrikanın anlık operasyonel kayıp ve maliyet yaşamaması için, öncelikle zafiyetin sömürülme vektörünün ağ seviyesinde (firewall veya izolasyonla) kapatılıp kapatılamayacağına bakılır. Planlı bir bakım penceresi oluşturulana kadar geçici telafi edici önlemler devreye sokulur; acil duruş yalnızca aktif bir siber saldırı tespit edildiğinde uygulanır.</div></div>
+
+<div class="soru"><div class="no">3</div><div class="metin">Yamayı doğrudan mı uygularsınız, önce test mi? Nerede test mi?</div>
+  <div class="cevap">Asla doğrudan canlı üretim ortamına uygulanmaz. Yama, fabrikadaki aktif makineye kurulmadan önce üreticinin (Baykal) simülasyon ortamında veya fabrikadaki <b>Test/Laboratuvar Tezgâhında</b> eksiksiz olarak test edilir. Büküm eksenlerinin (X, Y, Z) toleranslarının ve PLC döngü sürelerinin kararlılığı doğrulanmadan canlı sisteme geçilmez.</div></div>
+
+<div class="soru"><div class="no">4</div><div class="metin">Bu yama bir safety validation etkiliyor mu? Nasıl anlarsınız?</div>
+  <div class="cevap">Evet, PLC firmware kütüphanesinin güncellenmesi emniyet sistemiyle olan dijital köprüyü etkileyebilir. Bunu anlamak için yama sonrasında Safety PLC ile Normal PLC arasındaki haberleşme bütünlüğü test edilir, SIL/PL standartlarına uygunluk testleri (Functional Safety Verification) yeniden koşturulur ve ışık bariyeri tepki süreleri hassas ölçüm cihazlarıyla doğrulanır.</div></div>
+
+<div class="soru"><div class="no">5</div><div class="metin">Yama mümkün değilse compensating control (telafi edici önlem) ne olur?</div>
+  <div class="cevap"><p>Yamanın hemen uygulanamadığı veya sistem kararsızlığı yarattığı durumlarda alınacak telafi edici önlemler şunlardır:</p>
+    <ul><li>CNC kontrol ünitesi ile dış ağ/ERP arasındaki bağlantı geçici olarak kesilir (Ağ izolasyonu).</li><li>Uzak erişim portları kapatılır; yalnızca yerel mühendislik istasyonundan fiziksel kablo ile kontrollü erişime izin verilir.</li><li>Güvenlik duvarı (Firewall) kuralları sıkılaştırılarak zafiyetli porta gelen anormal paketler engellenir.</li></ul></div></div>
+
+<div class="kanit"><svg viewBox="0 0 24 24" fill="none" stroke="#0e7c7b" stroke-width="2" stroke-linejoin="round"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8l-5-5z"/><path d="M14 3v5h5"/></svg><span>Bu föyün çıktısı <b>Vulnerability Decision</b> → Evidence Pack <b>EP 09 · 10 · 11</b> başlığına oturur.</span></div>
+
+</body>
+</html>
