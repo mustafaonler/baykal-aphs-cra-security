@@ -1,0 +1,267 @@
+/* =====================================================================
+   Safety 4.0 Bootcamp — Laboratuvar föyleri ortak stil dosyası
+   Ölçüler hocanın şablonundan (docs/sablon.pdf) pt cinsinden alınmıştır.
+   A4 = 595 × 842 pt · içerik kenar boşluğu 40 pt
+   ===================================================================== */
+
+:root {
+  --lacivert: #16233b;
+  --lacivert-2: #1f3350;
+  --gri: #5a6b7b;
+  --gri-acik: #9fb2c4;
+  --cizgi: #dde6ef;
+  --zemin: #eef3f8;
+  --zemin-2: #f7fafc;
+  --kutu-acik: #cfe0ee;
+  --teal: #0e7c7b;
+  --teal-2: #1aa39a;
+  --turuncu: #e4572e;
+  --amber: #e6a100;
+  --kirmizi: #b02418;
+  --mor: #7c5cbf;
+  --pembe: #fbeae5;
+  /* her föy kendi rengini <body style="--lab: ..."> ile verir */
+  --lab: var(--teal-2);
+}
+
+@page {
+  size: A4;
+  margin: 40pt 0 29pt 0;
+
+  @bottom-left {
+    content: "SAFETY 4.0 BOOTCAMP · PaketPro 3000 Sürümü · Bu bir eğitim çıktısıdır, resmî denetim değildir.";
+    font: 7.3pt "Carlito", "Calibri", sans-serif;
+    color: var(--gri);
+    vertical-align: top;
+    padding: 4.6pt 0 0 40pt;
+    background: linear-gradient(#dde6ef, #dde6ef) no-repeat 40pt 0 / 100% 0.75pt;
+  }
+  @bottom-right {
+    /* sayfa numarası araclar/pdf-uret.js tarafından birleşik föye göre ayarlanır */
+    content: counter(page) " / 8";
+    font: 7.3pt "Carlito", "Calibri", sans-serif;
+    color: var(--gri);
+    text-align: right;
+    vertical-align: top;
+    padding: 4.6pt 40pt 0 0;
+    background: linear-gradient(#dde6ef, #dde6ef) no-repeat 0 0 / calc(100% - 40pt) 0.75pt;
+  }
+}
+@page :first { margin-top: 0; }
+
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0;
+  padding: 0 40pt;
+  font-family: "Carlito", "Calibri", sans-serif;
+  font-size: 9.8pt;
+  color: var(--lacivert);
+  background: #fff;
+}
+.serif { font-family: "Caladea", "Cambria", serif; }
+b, strong { font-weight: 700; }
+
+/* Ekranda A4 kâğıt görünümü (yazdırmada etkisiz) */
+@media screen {
+  html { background: #8a96a3; }
+  body { width: 595pt; min-height: 842pt; margin: 24px auto; box-shadow: 0 4px 24px rgba(0,0,0,.25); }
+}
+
+/* ---------- Başlık bandı ---------- */
+.bant {
+  position: relative;
+  margin: 0 -40pt;
+  height: 88pt;
+  overflow: hidden;
+  background: linear-gradient(90deg, #16243c 0%, color-mix(in srgb, var(--lab) 59%, #16233b) 100%);
+  color: #fff;
+}
+.bant::after { /* sağ üstteki açık renkli daire */
+  content: "";
+  position: absolute;
+  left: 478pt; top: -72pt;
+  width: 164pt; height: 164pt;
+  border-radius: 50%;
+  background: rgba(255,255,255,.18);
+}
+.bant .ikon {
+  position: absolute;
+  left: 39.3pt; top: 28.2pt;
+  width: 37.6pt; height: 37.6pt;
+  border-radius: 50%;
+  border: 1pt solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.12);
+  display: flex; align-items: center; justify-content: center;
+}
+.bant .ikon svg { width: 17pt; height: 17pt; }
+.bant .ust {
+  position: absolute;
+  left: 87.9pt; top: 26.6pt;
+  font-size: 8.5pt; font-weight: 700;
+  letter-spacing: 1.88pt;
+  color: #dbe6ef;
+  white-space: nowrap;
+}
+.bant h1 {
+  position: absolute;
+  left: 87.9pt; top: 43.9pt;
+  margin: 0;
+  font: 700 19pt/1 "Caladea", "Cambria", serif;
+  white-space: nowrap;
+}
+.bant .cikti {
+  position: absolute;
+  right: 40.5pt; top: 45.5pt;
+  height: 21pt;
+  padding: 0 10.7pt;
+  border-radius: 11pt;
+  border: 0.75pt solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.14);
+  font-size: 8.5pt; font-weight: 700;
+  line-height: 19.5pt;
+  white-space: nowrap;
+}
+
+/* ---------- Ad Soyad / Grup / Tarih ---------- */
+.kimlik {
+  display: grid;
+  grid-template-columns: 186.3pt 186.3pt 1fr;
+  column-gap: 23.2pt;
+  margin-top: 10.3pt;
+}
+.kimlik > div {
+  border-bottom: 0.75pt solid var(--cizgi);
+  height: 16pt;
+  font-size: 8.5pt;
+  white-space: nowrap;
+}
+.kimlik span { font-weight: 700; color: var(--gri); }
+.kimlik em {
+  font-style: normal;
+  font-size: 9.5pt;
+  color: var(--lacivert);
+  margin-left: 7pt;
+}
+
+/* ---------- Bağlam / kavram kutusu ---------- */
+.baglam {
+  position: relative;
+  margin-top: 11.8pt;
+  background: var(--zemin);
+  border-radius: 6pt;
+  padding: 9.4pt 18pt 9.6pt 27.7pt;
+  font-size: 9.3pt;
+  line-height: 13.5pt;
+}
+.baglam::before {
+  content: "";
+  position: absolute;
+  left: 12.5pt; top: 9.6pt; bottom: 9.6pt;
+  width: 3.8pt;
+  border-radius: 2pt;
+  background: var(--lab);
+}
+.baglam b { color: var(--teal); }
+.baglam b.koyu { color: var(--lacivert); }
+.baglam.uyari { background: var(--pembe); }
+.baglam.uyari::before { background: var(--kirmizi); }
+
+/* ---------- Bölüm başlığı (Görev — ...) ---------- */
+.bolum {
+  display: flex; align-items: center; gap: 10pt;
+  margin: 22pt 0 10pt;
+  font: 700 12.5pt/1 "Caladea", "Cambria", serif;
+  color: var(--lacivert-2);
+  break-after: avoid;
+}
+.bolum::after { content: ""; flex: 1; height: 0.75pt; background: var(--cizgi); }
+
+/* ---------- Sorular ---------- */
+.soru {
+  display: grid;
+  grid-template-columns: 17.5pt 1fr;
+  column-gap: 10.5pt;
+  margin-bottom: 14pt;
+}
+.soru .no {
+  width: 17.5pt; height: 17.5pt;
+  margin-top: 0.7pt;
+  border-radius: 50%;
+  background: var(--lab);
+  color: #fff;
+  font: 700 9.5pt/17.5pt "Caladea", "Cambria", serif;
+  text-align: center;
+}
+.soru .metin { line-height: 13.5pt; break-after: avoid; }
+.soru .cevap {
+  grid-column: 2;
+  margin-top: 5pt;
+  font-size: 9.6pt;
+  line-height: 13.6pt;
+  color: #24364f;
+  text-align: left;
+}
+.soru .cevap p { margin: 0 0 4pt; }
+.soru .cevap p:last-child { margin-bottom: 0; }
+.soru .cevap ul { margin: 2pt 0 0; padding-left: 13pt; }
+.soru .cevap li { margin-bottom: 2.5pt; }
+
+/* ---------- Evidence Pack notu ---------- */
+.kanit {
+  display: flex; align-items: center; gap: 9pt;
+  margin-top: 12pt;
+  min-height: 26.6pt;
+  padding: 5pt 12pt 5pt 13pt;
+  background: var(--zemin-2);
+  border: 0.75pt dashed #b7c4d2;
+  border-radius: 6pt;
+  font-size: 8.6pt;
+  break-inside: avoid;
+}
+.kanit svg { flex: none; width: 11pt; height: 11pt; }
+.kanit b { color: var(--teal); }
+
+/* ---------- Akış şemaları ---------- */
+.sema { position: relative; }
+.sema .etiket {
+  position: absolute;
+  font-size: 7.5pt; font-weight: 700;
+  letter-spacing: 0.75pt;
+  white-space: nowrap;
+  color: var(--lacivert-2);
+}
+.sema .etiket.kirmizi { color: var(--kirmizi); }
+.sema .k {
+  position: absolute;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-radius: 4pt;
+  font-size: 8.6pt; font-weight: 700;
+  line-height: 10.5pt;
+  text-align: center;
+  color: var(--lacivert);
+  white-space: nowrap;
+}
+.sema .k small { font-size: 6.4pt; font-weight: 400; line-height: 8pt; margin-top: 2.5pt; }
+.sema .k.iki { padding-bottom: 1.3pt; }
+.sema .k.acik  { background: var(--kutu-acik); }
+.sema .k.acik2 { background: var(--zemin); }
+.sema .k.koyu  { color: #fff; }
+.sema .ok {
+  position: absolute;
+  font-size: 10.7pt; font-weight: 700;
+  color: var(--gri);
+}
+
+/* ---------- Kapak ---------- */
+body.kapak { padding: 0; }
+@media print { body.kapak { background: var(--lacivert); } }
+.kapak-sayfa {
+  position: relative;
+  height: 842pt;
+  background: var(--lacivert);
+  color: #fff;
+  padding: 0 51pt;
+  overflow: hidden;
+}
+@media screen { body.kapak { min-height: 0; } }

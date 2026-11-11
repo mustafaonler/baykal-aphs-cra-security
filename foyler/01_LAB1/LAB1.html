@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAB 1 · Safety Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:wght@400;700&family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ortak/foy.css">
+<style>
+  .sema { height: 115pt; margin-top: 9pt; }
+  .bolum.ilk { margin-top: 38.8pt; }
+</style>
+</head>
+<body style="--lab:#1aa39a">
+
+<header class="bant">
+  <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.9-4.3-1.6-7.5-5.3-7.5-9.9V6L12 3z"/></svg></div>
+  <div class="ust">LABORATUVAR 1 · PAKETPRO 3000 · Paketleme Makinesi</div>
+  <h1>Safety Architecture</h1>
+  <div class="cikti">Çıktı: Safety Function Map</div>
+</header>
+
+<section class="kimlik">
+  <div><span>Ad Soyad</span><em>Mustafa Önler</em></div>
+  <div><span>Grup</span><em>Gece-B</em></div>
+  <div><span>Tarih</span></div>
+</section>
+
+<div class="baglam"><b>PaketPro bağlamı:</b> Sıcak yapıştırma çenesi ve film kesme bıçağı el/parmak için ciddi tehlikedir; koruma <b>ışık perdesi + kapak kilidi → Safety PLC → STO</b> zinciridir. Ve bu makinenin <b>internete açık bir uzak bakım modülü</b> vardır — sorular oraya gidecek.</div>
+
+<div class="sema" aria-label="Normal kontrol yolu ve safety yolu şeması">
+  <svg style="position:absolute;left:0;top:0;overflow:visible" width="515pt" height="115pt" viewBox="0 0 515 115">
+    <path d="M458.3 43.8 V64.7 H285.6 M178 64.7 H166.6 V89" fill="none" stroke="#e6a100" stroke-width="1.6" stroke-dasharray="3.2 2.2"/>
+  </svg>
+  <div class="etiket" style="left:0;top:3.3pt">NORMAL KONTROL YOLU · üretim</div>
+  <div class="k acik" style="left:0;top:17.2pt;width:93pt;height:26.6pt">Sensör</div>
+  <div class="ok" style="left:98.6pt;top:22pt">→</div>
+  <div class="k koyu iki" style="left:112.9pt;top:17.2pt;width:107.5pt;height:26.6pt;background:#1aa39a">PLC<small>normal kumanda</small></div>
+  <div class="ok" style="left:226.2pt;top:22pt">→</div>
+  <div class="k acik" style="left:240.8pt;top:17.2pt;width:92.5pt;height:26.6pt">Çene + bıçak</div>
+  <div class="k koyu iki" style="left:401.3pt;top:17.2pt;width:114.1pt;height:26.6pt;background:#e4572e">Uzak bakım modülü<small>internete AÇIK</small></div>
+
+  <div class="k" style="left:178pt;top:58.6pt;width:107.6pt;height:12.8pt;border-radius:6.4pt;background:#e6a100;font-size:7.2pt;font-weight:400;padding-top:4.4pt">dijital kesişim noktası</div>
+
+  <div class="etiket kirmizi" style="left:0;top:75.4pt">SAFETY YOLU · koruma · AYRI</div>
+  <div class="k acik2" style="left:0;top:89pt;width:93pt;height:26pt">Işık perdesi + kapak kilidi</div>
+  <div class="ok" style="left:98.6pt;top:93.7pt">→</div>
+  <div class="k koyu iki" style="left:112.9pt;top:89pt;width:107.5pt;height:26pt;background:#b02418">Safety PLC<small>emniyet kumandası</small></div>
+  <div class="ok" style="left:226.2pt;top:93.7pt">→</div>
+  <div class="k acik2" style="left:240.8pt;top:89pt;width:100pt;height:26pt">STO / Kontaktör</div>
+  <div class="ok" style="left:346.5pt;top:93.7pt">→</div>
+  <div class="k koyu" style="left:360.8pt;top:89pt;width:78.8pt;height:26pt;background:#1f3350">Safe State</div>
+</div>
+
+<h2 class="bolum ilk">Görev — sırayla cevaplayın</h2>
+
+<div class="soru"><div class="no">1</div><div class="metin">Bu makinede tehlike nedir? İnsan neyden zarar görür?</div>
+  <div class="cevap">PaketPro 3000 paketleme makinesinde temel tehlike, yüksek sıcaklıkta çalışan <b>sıcak yapıştırma çenesi</b> ve yüksek hızla hareket eden <b>film kesme bıçağıdır</b>. İnsan (operatör), ambalaj filmini düzeltirken veya hattan ürün müdahalesi yaparken ellerinin ve parmaklarının bu sıcak çene arasında yanması ya da kesme bıçağı tarafından kesilmesi/kopması tehlikesiyle karşı karşıyadır.</div></div>
+
+<div class="soru"><div class="no">2</div><div class="metin">Safety function (emniyet fonksiyonu) hangisidir?</div>
+  <div class="cevap">Emniyet fonksiyonu, operatörün tehlikeli bölgeye erişimini engelleyen veya kapak açıldığında sistemi durduran <b>"Işık perdesi + kapak kilidi → Safety PLC → STO"</b> koruma zinciridir.</div></div>
+
+<div class="soru"><div class="no">3</div><div class="metin">Safety-related control system nerede? Şemada işaretleyin.</div>
+  <div class="cevap">Şemadaki alt satırda yer alan <b>"SAFETY YOLU - koruma - AYRI"</b> etiketli hattın tamamıdır. İzlediği yol sırasıyla şöyledir: [Işık perdesi + kapak kilidi] → [Safety PLC] → [STO / Kontaktör] → [Safe State]</div></div>
+
+<div class="soru"><div class="no">4</div><div class="metin">Normal PLC ile Safety PLC farkı nedir?</div>
+  <div class="cevap">Normal PLC, paketleme makinesinin üretim hızını, film akışını, çene ısıtma döngülerini ve normal çalışma komutlarını yönetir. Safety PLC ise yalnızca insan güvenliğinden (ışık perdesi ve kapak kilitlerinden gelen sinyallerden) sorumludur. En önemli fark, Safety PLC'nin yedekli (redundant) mimariye sahip olması ve kendi iç teşhisini (self-diagnostic) yaparak arıza anında sistemi güvenli duruma geçirmesidir.</div></div>
+
+<div class="soru"><div class="no">5</div><div class="metin">PLr / SIL neden var? Bu fonksiyon için neden önemli?</div>
+  <div class="cevap">PLr veya SIL, emniyet fonksiyonunun ne kadar güvenilir olması gerektiğini belirten uluslararası standartlardır. Paketleme makinelerinde sıcak çene ve kesici bıçak nedeniyle yanma ve ezilme riski yüksek olduğu için, sistemin yüksek güvenlik seviyesinde tasarlanması; elektronik veya yazılımsal bir arıza durumunda dahi emniyetin devre dışı kalmamasını garanti etmek için hayati önem taşır.</div></div>
+
+<div class="soru"><div class="no">6</div><div class="metin">Safe state (güvenli durum) nedir?</div>
+  <div class="cevap">PaketPro 3000 için "Safe State", STO (Safe Torque Off) veya emniyet kontaktörlerinin devreye girerek hareketli çene motorlarına ve kesme bıçağı aktüatörlerine giden elektrik/güç beslemesini tamamen kesmesi durumudur. Bu durumda tüm mekanizmalar anında durur ve enerjisiz kalarak tehlikesiz duruma geçer.</div></div>
+
+<div class="soru"><div class="no">7</div><div class="metin">Safety function hangi dijital bağımlılıklara sahip?</div>
+  <div class="cevap">Emniyet fonksiyonu, makinenin genel durumunu, hata kodlarını ve emniyet durumunu normal üretim ekranına aktarmak için şemada turuncu kesik çizgilerle gösterilen <b>"dijital kesişim noktası"</b> üzerinden Normal PLC ile haberleşir.</div></div>
+
+<div class="soru"><div class="no">8</div><div class="metin">Siber müdahale hangi noktadan bu fonksiyonu bozar?</div>
+  <div class="cevap">Siber müdahale, şemada sağ üstte yer alan ve <b>internete açık olan uzak bakım modülü</b> üzerinden sisteme sızan bir saldırganın, dijital kesişim noktası yoluyla Normal PLC ve Safety PLC arasındaki haberleşmeyi manipüle etmesiyle gerçekleşir. Saldırgan bu yolla ışık perdesini veya kapak kilidi denetimini yazılımsal olarak etkisiz hale getirebilir.</div></div>
+
+<div class="kanit"><svg viewBox="0 0 24 24" fill="none" stroke="#0e7c7b" stroke-width="2" stroke-linejoin="round"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8l-5-5z"/><path d="M14 3v5h5"/></svg><span>Bu föyün çıktısı <b>Safety Function Map</b> → Evidence Pack <b>EP 03 Safety Functions</b> başlığına oturur.</span></div>
+
+</body>
+</html>
