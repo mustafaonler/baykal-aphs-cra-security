@@ -395,9 +395,12 @@ async function sayfaGorselleri(tarayici, dosya) {
 
   yaz("## \"PaketPro\" geçen yerler");
   yaz();
-  yaz("| Föy | Yer | Metin | Kaynak |");
-  yaz("|---|---|---|---|");
-  for (const p of paketproTum) yaz(`| ${p.foy} | ${p.bolum} | ${kisa(p.metin, 90)} | ${p.kaynak} |`);
+  if (!paketproTum.length) yaz("Yok — föylerin hiçbir yerinde (şablon metni ya da Word cevabı) \"PaketPro\" geçmiyor.");
+  else {
+    yaz("| Föy | Yer | Metin | Kaynak |");
+    yaz("|---|---|---|---|");
+    for (const p of paketproTum) yaz(`| ${p.foy} | ${p.bolum} | ${kisa(p.metin, 90)} | ${p.kaynak} |`);
+  }
   yaz();
 
   for (const L of labBolumleri) {

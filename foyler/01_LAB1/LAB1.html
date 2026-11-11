@@ -57,28 +57,28 @@
 <h2 class="bolum ilk">Görev — sırayla cevaplayın</h2>
 
 <div class="soru"><div class="no">1</div><div class="metin">Bu makinede tehlike nedir? İnsan neyden zarar görür?</div>
-  <div class="cevap">PaketPro 3000 paketleme makinesinde temel tehlike, yüksek sıcaklıkta çalışan <b>sıcak yapıştırma çenesi</b> ve yüksek hızla hareket eden <b>film kesme bıçağıdır</b>. İnsan (operatör), ambalaj filmini düzeltirken veya hattan ürün müdahalesi yaparken ellerinin ve parmaklarının bu sıcak çene arasında yanması ya da kesme bıçağı tarafından kesilmesi/kopması tehlikesiyle karşı karşıyadır.</div></div>
+  <div class="cevap">Baykal APHS abkant preste temel tehlike, tonlarca kuvvetle aşağı inen hidrolik üst çene (koç) ile alt kalıp arasındaki kapanma bölgesidir. İnsan (operatör), sac levhayı kalıba yerleştirirken veya büküm sırasında levhayı tutarken ellerinin ve parmaklarının üst çene ile kalıp arasında ezilmesi ya da kopması tehlikesiyle karşı karşıyadır. Ayrıca büküm anında sac levhanın yukarı doğru savrulması ve CNC arka dayama eksenlerinin (X, R, Z) hareketi de çarpma ve sıkışma riski oluşturur.</div></div>
 
 <div class="soru"><div class="no">2</div><div class="metin">Safety function (emniyet fonksiyonu) hangisidir?</div>
-  <div class="cevap">Emniyet fonksiyonu, operatörün tehlikeli bölgeye erişimini engelleyen veya kapak açıldığında sistemi durduran <b>"Işık perdesi + kapak kilidi → Safety PLC → STO"</b> koruma zinciridir.</div></div>
+  <div class="cevap">Emniyet fonksiyonu, operatörün eli üst çene ile kalıp arasındaki tehlikeli bölgedeyken üst çenenin inmesini engelleyen veya inişi anında durduran "Işık bariyeri + çift el kumandası → Safety PLC → STO / hidrolik emniyet valfi" koruma zinciridir.</div></div>
 
 <div class="soru"><div class="no">3</div><div class="metin">Safety-related control system nerede? Şemada işaretleyin.</div>
-  <div class="cevap">Şemadaki alt satırda yer alan <b>"SAFETY YOLU - koruma - AYRI"</b> etiketli hattın tamamıdır. İzlediği yol sırasıyla şöyledir: [Işık perdesi + kapak kilidi] → [Safety PLC] → [STO / Kontaktör] → [Safe State]</div></div>
+  <div class="cevap">Şemadaki alt satırda yer alan "SAFETY YOLU - koruma - AYRI" etiketli hattın tamamıdır. İzlediği yol sırasıyla şöyledir: [Işık bariyeri + çift el] → [Safety PLC] → [STO / Emniyet valfi] → [Safe State]</div></div>
 
 <div class="soru"><div class="no">4</div><div class="metin">Normal PLC ile Safety PLC farkı nedir?</div>
-  <div class="cevap">Normal PLC, paketleme makinesinin üretim hızını, film akışını, çene ısıtma döngülerini ve normal çalışma komutlarını yönetir. Safety PLC ise yalnızca insan güvenliğinden (ışık perdesi ve kapak kilitlerinden gelen sinyallerden) sorumludur. En önemli fark, Safety PLC'nin yedekli (redundant) mimariye sahip olması ve kendi iç teşhisini (self-diagnostic) yaparak arıza anında sistemi güvenli duruma geçirmesidir.</div></div>
+  <div class="cevap">Normal PLC, abkant presin büküm programlarını, üst çenenin iniş hızını ve basıncını, CNC arka dayama eksenlerinin konumlandırılmasını ve normal çalışma komutlarını yönetir. Safety PLC ise yalnızca insan güvenliğinden (ışık bariyeri ve çift el kumandasından gelen sinyallerden) sorumludur. En önemli fark, Safety PLC'nin yedekli (redundant) mimariye sahip olması ve kendi iç teşhisini (self-diagnostic) yaparak arıza anında sistemi güvenli duruma geçirmesidir.</div></div>
 
 <div class="soru"><div class="no">5</div><div class="metin">PLr / SIL neden var? Bu fonksiyon için neden önemli?</div>
-  <div class="cevap">PLr veya SIL, emniyet fonksiyonunun ne kadar güvenilir olması gerektiğini belirten uluslararası standartlardır. Paketleme makinelerinde sıcak çene ve kesici bıçak nedeniyle yanma ve ezilme riski yüksek olduğu için, sistemin yüksek güvenlik seviyesinde tasarlanması; elektronik veya yazılımsal bir arıza durumunda dahi emniyetin devre dışı kalmamasını garanti etmek için hayati önem taşır.</div></div>
+  <div class="cevap">PLr veya SIL, emniyet fonksiyonunun ne kadar güvenilir olması gerektiğini belirten uluslararası standartlardır (PL için ISO 13849-1, SIL için IEC 62061). Abkant preslerde üst çenenin el ve parmakları ezme veya koparma riski çok yüksek olduğu için bu fonksiyon genellikle en yüksek seviyede (PLr e) tasarlanır; böylece elektronik veya yazılımsal bir arıza durumunda dahi emniyetin devre dışı kalmaması garanti edilir. Bu hayati önem taşır.</div></div>
 
 <div class="soru"><div class="no">6</div><div class="metin">Safe state (güvenli durum) nedir?</div>
-  <div class="cevap">PaketPro 3000 için "Safe State", STO (Safe Torque Off) veya emniyet kontaktörlerinin devreye girerek hareketli çene motorlarına ve kesme bıçağı aktüatörlerine giden elektrik/güç beslemesini tamamen kesmesi durumudur. Bu durumda tüm mekanizmalar anında durur ve enerjisiz kalarak tehlikesiz duruma geçer.</div></div>
+  <div class="cevap">Baykal APHS için "Safe State", STO (Safe Torque Off) ve hidrolik emniyet valflerinin devreye girerek pompa motorunun enerjisini kesmesi ve üst çenenin hareketini anında durdurması durumudur. Hidrolik preste üst çene kendi ağırlığıyla düşebileceği için safe state yalnızca enerjinin kesilmesi değil, üst çenenin bulunduğu konumda tutulması ve makinenin kendiliğinden yeniden çalışmamasıdır.</div></div>
 
 <div class="soru"><div class="no">7</div><div class="metin">Safety function hangi dijital bağımlılıklara sahip?</div>
   <div class="cevap">Emniyet fonksiyonu, makinenin genel durumunu, hata kodlarını ve emniyet durumunu normal üretim ekranına aktarmak için şemada turuncu kesik çizgilerle gösterilen <b>"dijital kesişim noktası"</b> üzerinden Normal PLC ile haberleşir.</div></div>
 
 <div class="soru"><div class="no">8</div><div class="metin">Siber müdahale hangi noktadan bu fonksiyonu bozar?</div>
-  <div class="cevap">Siber müdahale, şemada sağ üstte yer alan ve <b>internete açık olan uzak bakım modülü</b> üzerinden sisteme sızan bir saldırganın, dijital kesişim noktası yoluyla Normal PLC ve Safety PLC arasındaki haberleşmeyi manipüle etmesiyle gerçekleşir. Saldırgan bu yolla ışık perdesini veya kapak kilidi denetimini yazılımsal olarak etkisiz hale getirebilir.</div></div>
+  <div class="cevap">Siber müdahale, şemada sağ üstte yer alan ve internete açık olan uzak bakım modülü üzerinden sisteme sızan bir saldırganın, dijital kesişim noktası yoluyla Normal PLC ve Safety PLC arasındaki haberleşmeyi manipüle etmesiyle gerçekleşir. Saldırgan bu yolla ışık bariyerini veya çift el kumandası denetimini yazılımsal olarak etkisiz hale getirebilir.</div></div>
 
 <div class="kanit"><svg viewBox="0 0 24 24" fill="none" stroke="#0e7c7b" stroke-width="2" stroke-linejoin="round"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8l-5-5z"/><path d="M14 3v5h5"/></svg><span>Bu föyün çıktısı <b>Safety Function Map</b> → Evidence Pack <b>EP 03 Safety Functions</b> başlığına oturur.</span></div>
 

@@ -1,6 +1,6 @@
 # Doğrulama Raporu — Baykal APHS Laboratuvar Föyleri
 
-Oluşturma: 11.11.2026 17:57:46 · Betik: `araclar/tam-dogrula.js`
+Oluşturma: 11.11.2026 20:17:59 · Betik: `araclar/tam-dogrula.js`
 
 Kaynak: `Paketleme/LABORATUVAR 1–7.docx` → föy HTML'leri (`foyler/0x_LABx/LABx.html`) → PDF'ler (tek tek ve `Baykal_APHS_Lab_Foyleri.pdf`).
 Karşılaştırmada kalın yazı, boşluk/satır sonu ve ➔/→ farkları normalize edilir. Word'de LaTeX olarak kalan `$2 \times 3 \times 2 = 12$` ifadeleri `2 × 3 × 2 = 12` kabul edilir.
@@ -23,11 +23,7 @@ Kapak: yerleşim sorunu yok.
 
 ## "PaketPro" geçen yerler
 
-| Föy | Yer | Metin | Kaynak |
-|---|---|---|---|
-| LAB 1 | Soru 1 cevabı | PaketPro 3000 paketleme makinesinde temel tehlike, yüksek sıcaklıkta çalışan | Word cevabı |
-| LAB 1 | Soru 6 cevabı | PaketPro 3000 için "Safe State", STO (Safe Torque Off) veya emniyet kontaktörlerinin devr… | Word cevabı |
-| LAB 5 | Soru 1 cevabı | Bileşen Var mı?: Evet, Baykal APHS Abkant makinesinin CNC kontrol ünitesinde ve PLC firmw… | Word cevabı |
+Yok — föylerin hiçbir yerinde (şablon metni ya da Word cevabı) "PaketPro" geçmiyor.
 
 ## LAB 1 — birebir aynı
 
@@ -54,7 +50,7 @@ Kapak: yerleşim sorunu yok.
 | 3 | 3. Safety-related control system nerede? Şemada işaret… | Soru 3 | Soru 3 | ✔ | ✔ | soru metni Word ile aynı; cevap aynı |
 | 4 | 4. Normal PLC ile Safety PLC farkı nedir? Normal PLC, … | Soru 4 | Soru 4 | ✔ | ✔ | soru metni Word ile aynı; cevap aynı |
 | 5 | 5. PLr / SIL neden var? Bu fonksiyon için neden önemli… | Soru 5 | Soru 5 | ✔ | ✔ | soru metni Word ile aynı; cevap aynı |
-| 6 | 6. Safe state (güvenli durum) nedir? PaketPro 3000 içi… | Soru 6 | Soru 6 | ✔ | ✔ | soru metni Word ile aynı; cevap aynı |
+| 6 | 6. Safe state (güvenli durum) nedir? Baykal APHS için … | Soru 6 | Soru 6 | ✔ | ✔ | soru metni Word ile aynı; cevap aynı |
 | 7 | 7. Safety function hangi dijital bağımlılıklara sahip?… | Soru 7 | Soru 7 | ✔ | ✔ | soru metni Word ile aynı; cevap aynı |
 | 8 | 8. Siber müdahale hangi noktadan bu fonksiyonu bozar? … | Soru 8 | Soru 8 | ✔ | ✔ | soru metni Word ile aynı; cevap aynı |
 
@@ -308,14 +304,14 @@ Birleşik PDF'in 13 sayfası 2× ölçekte PNG'ye çevrildi (`araclar/.sayfalar/
 | Sayfa | Föy | Taşma / kesilme | Üst üste binme | Boş cevap alanı | Not |
 |---|---|---|---|---|---|
 | 1 | Kapak | yok | yok | — | Alt başlık iki satır: "Laboratuvar Föyleri — BAYKAL APHS · Abkant Pres (Sac / Büküm Makinesi)"; açıklama paragrafı Baykal APHS'e uyarlandı, iki satır |
-| 2 | LAB 1 (1/2) | yok | yok | yok | Başlık bandındaki uzun makine adı sağdaki dekoratif daireye ve "Çıktı" etiketine değmiyor; Baykal APHS bağlam kutusu üç satır; şema kutuları ("Üst çene + alt kalıp", "Işık bariyeri + çift el", "STO / Emniyet valfi") kutulara sığıyor; Soru 1–5 |
-| 3 | LAB 1 (2/2) | yok | yok | yok | Soru 6–8 + Evidence Pack notu; sayfanın kalanı boş |
+| 2 | LAB 1 (1/2) | yok | yok | yok | Başlık bandındaki uzun makine adı sağdaki dekoratif daireye ve "Çıktı" etiketine değmiyor; Baykal APHS bağlam kutusu üç satır; şema kutuları ("Üst çene + alt kalıp", "Işık bariyeri + çift el", "STO / Emniyet valfi") kutulara sığıyor; Soru 1–5 (Baykal APHS'e uyarlanan Word cevaplarıyla), cevaplardaki "→" okları düzgün |
+| 3 | LAB 1 (2/2) | yok | yok | yok | Soru 6–8 (güncel Word cevapları) + Evidence Pack notu; sayfanın kalanı boş |
 | 4 | LAB 2 (1/2) | yok | yok | yok | Görev B tablosunun ilk 2 satırı |
 | 5 | LAB 2 (2/2) | yok | yok | yok | Tablo başlığı ikinci sayfada tekrar ediyor; kalan 4 satır + Evidence Pack |
 | 6 | LAB 3 (1/2) | yok | yok | yok | "Baykal APHS'nin kapıları (ipucu)" kutusu iki satır; risk tablosunun 1. sütun başlığı iki satıra kırılıyor, başlık satırına sığıyor; dar L/S/E sütunlarında metin çok satıra kırılıyor ama kesilmiyor |
 | 7 | LAB 3 (2/2) | yok | yok | — | Yalnızca "Altın kural" + Evidence Pack (birlikte tutuldu) |
 | 8 | LAB 4 | yok | yok | yok | Tek sayfa; MEVCUT/HEDEF kutuları eşit yükseklikte |
-| 9 | LAB 5 (1/2) | yok | yok | yok | Zafiyet kaydında "Baykal APHS Component X (CNC/PLC firmware kütüphanesi)" tek satır; Soru 1–4 |
+| 9 | LAB 5 (1/2) | yok | yok | yok | Zafiyet kaydında "Baykal APHS Component X (CNC/PLC firmware kütüphanesi)" tek satır; Soru 1 "Bileşen Var mı?" maddesi güncel Word cevabıyla iki satır; Soru 1–4 |
 | 10 | LAB 5 (2/2) | yok | yok | yok | Soru 5 bütün olarak + Evidence Pack |
 | 11 | LAB 6 (1/2) | yok | yok | yok | Senaryo kutusu Word metniyle |
 | 12 | LAB 6 (2/2) | yok | yok | — | Yalnızca "En sık hata" + Evidence Pack (birlikte tutuldu) |
