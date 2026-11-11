@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAB 3 · Threat &amp; Risk + Risk Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:wght@400;700&family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ortak/foy.css">
+<style>
+  .kutu { margin-top: 15.8pt; margin-bottom: 0; }
+  .formul { margin: -3pt 0 0; font-size: 8.8pt; line-height: 12pt; color: #24364f; }
+</style>
+</head>
+<body style="--lab:#e4572e">
+
+<header class="bant">
+  <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.8"/><circle cx="12" cy="12" r="1.3" fill="#fff"/></svg></div>
+  <div class="ust">LABORATUVAR 3 · PAKETPRO 3000 · Paketleme Makinesi</div>
+  <h1>Threat &amp; Risk + Risk Matrix</h1>
+  <div class="cikti">Çıktı: Risk Register</div>
+</header>
+
+<section class="kimlik">
+  <div><span>Ad Soyad</span><em>Mustafa Önler</em></div>
+  <div><span>Grup</span><em>Gece-B</em></div>
+  <div><span>Tarih</span></div>
+</section>
+
+<div class="baglam"><b>Kavram:</b> Senaryo beş parçadır: <b>kim → hangi kapı → ne yapar → zincir → FİZİKSEL sonuç</b>. Skor = L × S × E (her biri 1–3). <b>Kural:</b> S=3 ise skor düşük olsa bile senaryo öne alınır — insana zarar görünür kalır.</div>
+
+<div class="kutu"><h3>PaketPro'nun kapıları (ipucu)</h3>İnternete açık uzak bakım modülü · admin/admin hesabı · port 80 HMI · Wi-Fi (karton parola) · 2 kilitsiz USB · bulut telemetri — <i>fiziksel sonuç adayları: çene/bıçakta el-parmak yaralanması, sıkışma.</i></div>
+
+<h2 class="bolum">Görev — üç senaryo kurun ve puanlayın</h2>
+<p class="formul">(Formül: Skor = L × S × E [Her biri 1-3] | Kural: S=3 ise skor düşük olsa bile öncelik en yüksektir.)</p>
+
+<table class="tablo">
+  <colgroup><col style="width:174.6pt"><col style="width:55.2pt"><col style="width:56pt"><col style="width:56.5pt"><col style="width:90.4pt"><col></colgroup>
+  <thead><tr><th>Senaryo (kim ➔ kapı ➔ ne yapar ➔ zincir ➔ fiziksel sonuç)</th><th>L</th><th>S</th><th>E</th><th>Skor</th><th>Öncelik</th></tr></thead>
+  <tbody>
+    <tr><td>Dış Saldırgan ➔ İnternete Açık Uzak Bakım Modülü (Admin/Admin Parolası) ➔ CNC Lazer Koruma Parametrelerini Değiştirir ➔ Işık Bariyeri Devre Dışı Kalır ➔ Operatörün Elleri Üst Çene Altında Ezilir (Kritik Fiziksel Yaralanma).</td><td>2 (Ağ üzerinden erişim riski yüksek)</td><td>3 (Ölümcül / Ağır uzuv kaybı)</td><td>2 (Vardiya boyunca makine sürekli çalışıyor)</td><td>2 × 3 × 2 = 12 (Yüksek / Kritik)</td><td>1 (En Yüksek)</td></tr>
+    <tr><td>Kötü Niyetli İç Personel ➔ Kilitsiz USB / Zayıf Wi-Fi Ağı ➔ Zararlı Script Yükler ➔ Normal PLC Büküm Basıncını ve Hızını Maksimuma Çıkarır ➔ Hidrolik Valf Blokajı / Gövde Patlaması ➔ Saçılan Parçalar Operatöre Şiddetli Darbe Verir.</td><td>1 (Fiziksel veya yerel ağ erişimi gerektirir)</td><td>3 (Fiziksel yaralanma / travmatik darbe)</td><td>1 (Nadir yapılan USB veri yüklemesi)</td><td>1 × 3 × 1 = 3 (Düşük Skor)</td><td>2 (S=3 kuralı gereği skor düşük olsa da insana zarar vereceği için öne alınır)</td></tr>
+    <tr><td>Yetkisiz Kullanıcı ➔ Port 80 HMI (Web Arayüzü) ➔ Arka Dayama Eksen (X, R, Z) Koordinatlarını Bozar ➔ Sac Levha Hatası ve Geri Tepme Oluşur ➔ Operatöre Çarparak Travmatik Fiziksel Hasar Oluşturur.</td><td>2 (Ağ üzerinden şifresiz HMI erişimi)</td><td>2 (Orta düzey fiziksel darbe / ezilme)</td><td>2 (Günlük üretim boyunca aktif)</td><td>2 × 2 × 2 = 8</td><td>3</td></tr>
+  </tbody>
+</table>
+
+<div class="skala">
+  <span style="background:#b02418">Kritik 18–27</span>
+  <span style="background:#e4572e">Yüksek 9–17</span>
+  <span style="background:#e6a100;color:#16233b">Orta 4–8</span>
+  <span style="background:#5a6b7b">Düşük 1–3</span>
+</div>
+
+<div class="soru"><div class="no">1</div><div class="metin">En yüksek öncelikli senaryo hangisi? Bir cümleyle: neden bu?</div>
+  <div class="cevap">En yüksek öncelikli senaryo 1 numaralı senaryodur; çünkü internete açık uzak bakım modülü ve varsayılan zayıf parola (admin/admin) üzerinden sızan bir saldırganın doğrudan lazer koruma bariyerini devre dışı bırakarak S=3 (ölümcül ezilme riski) seviyesinde fiziksel yıkım üretmesi en büyük tehdittir.s</div></div>
+
+<div class="soru"><div class="no">2</div><div class="metin">S=3 olup skoru düşük kalan senaryonuz var mı? Nasıl görünür kılacaksınız?</div>
+  <div class="cevap">Evet, 2 numaralı senaryoda Olasılık (L=1) ve Maruz Kalma (E=1) düşük olduğu için toplam skor 3 çıkmıştır; ancak Şiddet seviyesi (S=3) insana doğrudan zarar vereceği için kritik risk taşır. Bunu risk matrisinde ve raporda “Düşük Olasılıklı Fakat Felaket Senaryosu (High-Impact Low-Frequency)” olarak etiketleyip rengini kırmızıya çekerek görünür kılacağız.</div></div>
+
+<div class="son-blok">
+<div class="uyari-kutu"><b>Altın kural:</b> Zincir "veri çalındı" ile bitiyorsa emniyet bulgusu değildir — bir adım daha gidin: bu, hattaki insana ne yapar?</div>
+
+<div class="kanit"><svg viewBox="0 0 24 24" fill="none" stroke="#0e7c7b" stroke-width="2" stroke-linejoin="round"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8l-5-5z"/><path d="M14 3v5h5"/></svg><span>Bu föyün çıktısı <b>Risk Register</b> → Evidence Pack <b>EP 04 Risk Assessment</b> başlığına oturur.</span></div>
+</div>
+
+</body>
+</html>
