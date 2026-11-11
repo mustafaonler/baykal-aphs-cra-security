@@ -10,6 +10,10 @@ Projede temel olarak şunları hedefliyoruz:
 
 Çalışma, Safety 4.0 Bootcamp dersinin laboratuvar föyleri üzerinden yürütülür. Föyler hocanın PaketPro 3000 şablonunun ([docs/sablon.pdf](docs/sablon.pdf)) görsel tasarımıyla hazırlanmış; cevaplar Baykal APHS abkant prese (hidrolik üst çene, alt kalıp, CNC arka dayama, ışık bariyeri + çift el kumandası → Safety PLC → STO, internete açık uzak bakım modülü) göre yazılmıştır.
 
+## 📊 SWOT Analizi
+
+[00_SWOT_Analizi/SWOT_Baykal_APHS.md](00_SWOT_Analizi/SWOT_Baykal_APHS.md) — Baykal APHS hidrolik abkant presin siber güvenlik ve fonksiyonel emniyet (Safety 4.0) açısından SWOT analizi. Her madde dayandığı föye bağlanmıştır; sonunda SWOT → aksiyon stratejileri yer alır.
+
 ## 📘 Laboratuvar Föyleri
 
 **Tümü tek dosyada:** [foyler/Baykal_APHS_Lab_Foyleri.pdf](foyler/Baykal_APHS_Lab_Foyleri.pdf) · **Doğrulama raporu:** [foyler/DOGRULAMA_RAPORU.md](foyler/DOGRULAMA_RAPORU.md)
@@ -27,6 +31,7 @@ Projede temel olarak şunları hedefliyoruz:
 
 ## 📂 İçerik Yapısı
 ```
+00_SWOT_Analizi/                Makine SWOT analizi (föylere dayalı)
 foyler/                         Şablon tasarımındaki föyler (HTML kaynak + A4 PDF)
   00_kapak/ … 07_LAB7/          Her klasörde LABx.html ve LABx.pdf
   ortak/foy.css                 Ortak stil (ölçüler şablondan alınmıştır)
