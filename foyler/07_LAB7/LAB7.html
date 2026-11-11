@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAB 7 · AI Safety Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:wght@400;700&family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ortak/foy.css">
+<style>
+  .soru .metin b { color: var(--lacivert); }
+  .akis + .bolum { margin-top: 17.8pt; }
+</style>
+</head>
+<body style="--lab:#7c5cbf">
+
+<header class="bant">
+  <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="6.5" y="6.5" width="11" height="11" rx="1.5"/><rect x="10" y="10" width="4" height="4" rx=".5"/><path d="M9.5 3.5v3M14.5 3.5v3M9.5 17.5v3M14.5 17.5v3M3.5 9.5h3M3.5 14.5h3M17.5 9.5h3M17.5 14.5h3"/></svg></div>
+  <div class="ust">LABORATUVAR 7 · PAKETPRO 3000 · Paketleme Makinesi</div>
+  <h1>AI Safety Challenge</h1>
+  <div class="cikti">Çıktı: AI Fail-Safe Decision</div>
+</header>
+
+<section class="kimlik">
+  <div><span>Ad Soyad</span><em>Mustafa Önler</em></div>
+  <div><span>Grup</span><em>Gece-B</em></div>
+  <div><span>Tarih</span></div>
+</section>
+
+<div class="baglam">Kavram — Prediction ≠ Safety: Yapay zekâ bir karar üretir; güvenliği garanti eden mimari YZ'nin <b>dışında</b> tanımlanmalıdır. (Araçlar: fail-safe, human override, monitoring, confidence threshold, fallback).</div>
+
+<p class="not-satir">Senaryo Uyarlaması: Baykal Abkant Pres makinesine büküm alanını izleyen, sac yerleşimini ve operatörün elini tanıyan "YZ Destekli Akıllı Kamera" eklenmesi planlanıyor.</p>
+
+<div class="akis" aria-label="Akış">
+  <span class="k" style="background:#1aa39a">Kamera</span><span class="ok">→</span>
+  <span class="k" style="background:#e6a100;color:#16233b">YZ Modeli (El mi/Sac mı?)</span><span class="ok">→</span>
+  <span class="k" style="background:#1aa39a">OK / STOP</span><span class="ok">→</span>
+  <span class="k" style="background:#1aa39a">Pres İniş İzni</span><span class="ok">→</span>
+  <span class="k" style="background:#1f3350">Üst Çene Hızı</span>
+</div>
+
+<h2 class="bolum">Görev — üç başarısızlıkta güvenli davranış</h2>
+
+<div class="soru"><div class="no">1</div><div class="metin"><b>Model yanlış sınıflandırdı:</b> Kusurlu parçaya OK verdi. (YZ, operatörün elini "sac levha" zannedip üst çenenin inmesine OK verdi). Sistem ne yapmalı? İkinci kontrol / insan onayı var mı?</div>
+  <div class="cevap"><b>Cevap:</b> YZ'nin kararı hiçbir zaman donanımsal emniyetin yerini alamaz. YZ modeli yanlışlıkla "OK" onayı verse bile, makinenin asıl güvenlik katmanı olan <b>fiziksel ışık bariyeri (lazer koruma)</b> eli algıladığı an Safety PLC devreye girip YZ'nin kararını ezmeli ve hidrolik valfleri kesmelidir (STO). Ayrıca nihai büküm onayı her zaman operatörün ayak pedalına basmasına (insan onayı) bağlı olmalıdır.</div></div>
+
+<div class="soru"><div class="no">2</div><div class="metin"><b>Girdi manipüle edildi:</b> Kamera verisi bozuk/sahte. (Kamera lensi yağlandı, üzeri kapatıldı veya sensöre lazer tutuldu). Nasıl fark edilir? Şüpheli girdide ne yapılır?</div>
+  <div class="cevap"><b>Cevap:</b> Kameradan gelen görüntüde ani kararma, kontrast kaybı (entropy değişimi) veya sinyal donması "monitoring" (izleme) sistemiyle tespit edilir. Şüpheli bir girdi (veya siber müdahale kaynaklı sahte frame) algılandığında sistem anında "Safe State" (güvenli durum) moduna geçerek üst çeneyi kilitler. Üretime devam edebilmek için operatörün merceği temizleyip makineyi fiziksel olarak resetlemesi (fallback) gerekir.</div></div>
+
+<div class="soru"><div class="no">3</div><div class="metin"><b>Confidence düştü:</b> Model "emin değilim" diyor. Eşik ne olmalı? Altında: dur / insana sor / fallback?</div>
+  <div class="cevap"><b>Cevap:</b> Ölümcül ezilme riski taşıyan bir abkant preste emniyet söz konusu olduğunda güven eşiği (Confidence Threshold) %99.9 olmalıdır. Model, kalıptaki cismin sac mı yoksa el mi olduğundan tam emin olamazsa (örneğin %85 eminse), makine hidrolik hareketi anında <b>durdurur</b>. HMI (CNC ekranı) üzerinde "Tanımsız Cisim Uyarı" pop-up'ı çıkar ve sistem <b>insana sor</b> (human in the loop) moduna geçer. Operatör görsel olarak alanı kontrol edip çift el butonuyla onay verene kadar makine kilitli kalır.</div></div>
+
+<h2 class="bolum">Karar tablosu — AI Fail-Safe Decision</h2>
+
+<table class="tablo">
+  <colgroup><col style="width:154.8pt"><col></colgroup>
+  <thead><tr><th>Başarısızlık</th><th>Tanımladığınız güvenli davranış (hangi kavramla?)</th></tr></thead>
+  <tbody>
+    <tr><td class="sabit">Model yanlış sınıflandırdı</td><td>YZ kararını ezen fiziksel lazer bariyerin (Safety PLC) makineyi anında durdurması. <b>(Kavram: Fail-Safe &amp; Human Override)</b></td></tr>
+    <tr><td class="sabit">Girdi manipüle edildi</td><td>Görüntü anomalisi/veri kaybı algılandığı anda üst çenenin hidrolik kilitlenmesi. <b>(Kavram: Monitoring &amp; Fallback)</b></td></tr>
+    <tr><td class="sabit">Confidence düştü</td><td>Eşik (%99.9) altına düşüldüğünde makinenin durup CNC ekranından operatör onayı beklemesi. <b>(Kavram: Confidence Threshold &amp; Human in the Loop)</b></td></tr>
+  </tbody>
+</table>
+
+<div class="kanit"><svg viewBox="0 0 24 24" fill="none" stroke="#0e7c7b" stroke-width="2" stroke-linejoin="round"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8l-5-5z"/><path d="M14 3v5h5"/></svg><span>Bu föyün çıktısı <b>AI Fail-Safe Decision</b> → Evidence Pack <b>EP 03 + EP 15</b> başlığına oturur.</span></div>
+
+</body>
+</html>
