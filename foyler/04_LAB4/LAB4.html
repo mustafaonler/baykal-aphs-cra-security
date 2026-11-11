@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAB 4 · Secure Remote Access</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:wght@400;700&family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ortak/foy.css">
+<style> .ikili + .bolum { margin-top: 17.8pt; } </style>
+</head>
+<body style="--lab:#1f3350">
+
+<header class="bant">
+  <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/></svg></div>
+  <div class="ust">LABORATUVAR 4 · PAKETPRO 3000 · Paketleme Makinesi</div>
+  <h1>Secure Remote Access</h1>
+  <div class="cikti">Çıktı: Secure Architecture</div>
+</header>
+
+<section class="kimlik">
+  <div><span>Ad Soyad</span><em>Mustafa Önler</em></div>
+  <div><span>Grup</span><em>Gece-B</em></div>
+  <div><span>Tarih</span></div>
+</section>
+
+<div class="baglam"><b class="koyu">Kavram:</b> İki katman, ikisi de şart: <b>erişim güvenliği</b> (girişi zorlaştır: ara nokta, VPN, MFA, kişisel hesap, kayıt, varsayılan kapalı) + <b>emniyet bağımsızlığı</b> (girse bile insan korunur).</div>
+
+<h2 class="bolum">Görev A — mevcut → hedef</h2>
+
+<div class="ikili">
+  <div class="mevcut">
+    <h3>MEVCUT (çizin/yazın)</h3>
+    <div class="ipucu">İpucu: uzak bakım modülü bugün internete DOĞRUDAN açık.</div>
+    <ul><li>Makinenin uzak bakım modülü ve CNC kontrol ünitesi bugün internete DOĞRUDAN açıktır.</li><li>Üretici servis mühendisleri sisteme şifresiz portlar ve paylaşılan ortak "admin/admin" parolalarıyla bağlanmaktadır.</li><li>Uzak erişim portları 7/24 aktif ve sürekli açık kalmaktadır; yapılan oturumlar kayıt altına alınmamaktadır.</li><li>Makine ağında herhangi bir segmentasyon veya uç nokta koruma katmanı bulunmamaktadır.</li></ul>
+  </div>
+  <div class="hedef">
+    <h3>HEDEF (beş ilkeyle yeniden tasarlayın)</h3>
+    <ul class="duz"><li>1. Erişim Kontrolü ve Aracı: Doğrudan dış bağlantı kaldırılmış, fabrikadaki güvenli bir <b>Jump Server (Atlama Sunucusu)</b> aracı olarak konumlandırılmıştır.</li><li>2. Güvenli Tünel: Dışarıdan gelen erişimler şifreli <b>VPN tünelleri</b> üzerinden sınırlandırılmıştır.</li><li>3. Kimlik Doğrulama: Basit parolalar yerine <b>Çok Faktörlü Kimlik Doğrulama (MFA)</b> zorunlu kılınmıştır.</li><li>4. Hesap Yönetimi: Ortak hesaplar yasaklanmış, her mühendis için <b>kişisel ve izlenebilir hesaplar</b> tanımlanmıştır.</li><li>5. Zamanlama ve Kayıt: Portlar varsayılan olarak kapalıdır (<b>Just-In-Time erişim</b>); tüm uzaktan bakım oturumları eksiksiz olarak <b>tam oturum kaydına (log)</b> alınmaktadır.</li></ul>
+  </div>
+</div>
+
+<h2 class="bolum">Görev B — functional safety köprüsü</h2>
+
+<div class="soru"><div class="no">1</div><div class="metin">Saldırgan tüm önlemlere rağmen içeri girerse: emniyet fonksiyonu etkilenir mi? Neden?</div>
+  <div class="cevap">Evet, etkilenme riski bulunur. Eğer saldırgan Normal PLC veya CNC kontrol ünitesi üzerinden Safety PLC ile kurulan dijital haberleşme köprüsüne sızmayı başarırsa; emniyet parametrelerini değiştirebilir, lazer koruma bariyerlerinin (muting) körleme alanlarını manipüle edebilir veya acil stop sinyallerinin işlenmesini yazılımsal olarak aksatabilir.</div></div>
+
+<div class="soru"><div class="no">2</div><div class="metin">Işık perdesi zincirinin uzak bakım yolundan etkilenmemesi için GEREKSİNİMİ yazın (çözümü değil).</div>
+  <div class="cevap">Gereksinim Tanımı: Işık perdesi ve acil stop mekanizmalarını içeren emniyet zinciri (Safety Function), kurumsal ağdan, internete açık uzak bakım modülünden ve normal üretim kontrol mantığından mantıksal/fiziksel olarak tamamen izole edilmeli; dış ağdan gelebilecek hiçbir komut veya zafiyet, emniyet sisteminin donanımsal ve yazılımsal karar mekanizmasını doğrudan değiştirememelidir (Emniyetin bağımsızlığı ve izolasyonu ilkesi).</div></div>
+
+<div class="son-blok">
+<p class="not-satir">Tarafsızlık notu: Bu föy çözüm tasarlatmaz; gereksinimi tanımlatır. Tasarım kararı firmanızındır.</p>
+
+<div class="kanit"><svg viewBox="0 0 24 24" fill="none" stroke="#0e7c7b" stroke-width="2" stroke-linejoin="round"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8l-5-5z"/><path d="M14 3v5h5"/></svg><span>Bu föyün çıktısı <b>Secure Architecture</b> → Evidence Pack <b>EP 02 + EP 06</b> başlığına oturur.</span></div>
+</div>
+
+</body>
+</html>
