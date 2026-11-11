@@ -12,7 +12,7 @@ Projede temel olarak şunları hedefliyoruz:
 
 ## 📘 Laboratuvar Föyleri
 
-**Tümü tek dosyada:** [foyler/Baykal_APHS_Lab_Foyleri.pdf](foyler/Baykal_APHS_Lab_Foyleri.pdf)
+**Tümü tek dosyada:** [foyler/Baykal_APHS_Lab_Foyleri.pdf](foyler/Baykal_APHS_Lab_Foyleri.pdf) · **Doğrulama raporu:** [foyler/DOGRULAMA_RAPORU.md](foyler/DOGRULAMA_RAPORU.md)
 
 | Hafta | Föy | Çıktı | Evidence Pack | PDF | HTML |
 |---|---|---|---|---|---|
@@ -31,6 +31,7 @@ foyler/                         Şablon tasarımındaki föyler (HTML kaynak + A
   00_kapak/ … 07_LAB7/          Her klasörde LABx.html ve LABx.pdf
   ortak/foy.css                 Ortak stil (ölçüler şablondan alınmıştır)
   Baykal_APHS_Lab_Foyleri.pdf   Kapak + 7 föy, tek PDF
+  DOGRULAMA_RAPORU.md           Word ↔ föy ↔ PDF doğrulama raporu
 Paketleme/                      Cevapların kaynağı: LABORATUVAR 1–7 Word dosyaları
 docs/sablon.pdf                 Hocanın PaketPro 3000 föy şablonu
 araclar/                        Föy üretim araçları (Node.js)
@@ -42,8 +43,8 @@ Cevaplar Word dosyalarından elle yazılmadan, programla aktarılır; metin değ
 ```bash
 cd araclar
 npm install
-node dogrula.js 1 2 3 4 5 6 7     # Word metinlerinin föylerde aynen bulunduğunu kontrol eder
 node pdf-uret.js --birlestir      # HTML → A4 PDF (Chrome/Edge) + birleşik PDF
+node tam-dogrula.js               # Word ↔ HTML ↔ PDF tam doğrulama → foyler/DOGRULAMA_RAPORU.md
 ```
 
 `doldur.js`, föy HTML'lerindeki `{{P<n>}}` yer tutucularını Word paragraflarıyla doldurmak için kullanıldı.

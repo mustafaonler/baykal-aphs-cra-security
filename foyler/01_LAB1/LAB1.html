@@ -17,7 +17,7 @@
 
 <header class="bant">
   <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.9-4.3-1.6-7.5-5.3-7.5-9.9V6L12 3z"/></svg></div>
-  <div class="ust">LABORATUVAR 1 · PAKETPRO 3000 · Paketleme Makinesi</div>
+  <div class="ust">LABORATUVAR 1 · BAYKAL APHS · Abkant Pres (Sac Büküm Makinesi)</div>
   <h1>Safety Architecture</h1>
   <div class="cikti">Çıktı: Safety Function Map</div>
 </header>
@@ -28,7 +28,7 @@
   <div><span>Tarih</span></div>
 </section>
 
-<div class="baglam"><b>PaketPro bağlamı:</b> Sıcak yapıştırma çenesi ve film kesme bıçağı el/parmak için ciddi tehlikedir; koruma <b>ışık perdesi + kapak kilidi → Safety PLC → STO</b> zinciridir. Ve bu makinenin <b>internete açık bir uzak bakım modülü</b> vardır — sorular oraya gidecek.</div>
+<div class="baglam"><b>Baykal APHS bağlamı:</b> Hidrolik üst çene (koç) ile alt kalıp arası el/parmak için ciddi ezilme tehlikesidir; koruma <b>ışık bariyeri + çift el kumandası → Safety PLC → STO / hidrolik emniyet valfi</b> zinciridir. Ve bu makinenin <b>internete açık bir uzak bakım modülü</b> vardır — sorular oraya gidecek.</div>
 
 <div class="sema" aria-label="Normal kontrol yolu ve safety yolu şeması">
   <svg style="position:absolute;left:0;top:0;overflow:visible" width="515pt" height="115pt" viewBox="0 0 515 115">
@@ -39,17 +39,17 @@
   <div class="ok" style="left:98.6pt;top:22pt">→</div>
   <div class="k koyu iki" style="left:112.9pt;top:17.2pt;width:107.5pt;height:26.6pt;background:#1aa39a">PLC<small>normal kumanda</small></div>
   <div class="ok" style="left:226.2pt;top:22pt">→</div>
-  <div class="k acik" style="left:240.8pt;top:17.2pt;width:92.5pt;height:26.6pt">Çene + bıçak</div>
+  <div class="k acik" style="left:240.8pt;top:17.2pt;width:92.5pt;height:26.6pt">Üst çene + alt kalıp</div>
   <div class="k koyu iki" style="left:401.3pt;top:17.2pt;width:114.1pt;height:26.6pt;background:#e4572e">Uzak bakım modülü<small>internete AÇIK</small></div>
 
   <div class="k" style="left:178pt;top:58.6pt;width:107.6pt;height:12.8pt;border-radius:6.4pt;background:#e6a100;font-size:7.2pt;font-weight:400;padding-top:4.4pt">dijital kesişim noktası</div>
 
   <div class="etiket kirmizi" style="left:0;top:75.4pt">SAFETY YOLU · koruma · AYRI</div>
-  <div class="k acik2" style="left:0;top:89pt;width:93pt;height:26pt">Işık perdesi + kapak kilidi</div>
+  <div class="k acik2" style="left:0;top:89pt;width:93pt;height:26pt">Işık bariyeri + çift el</div>
   <div class="ok" style="left:98.6pt;top:93.7pt">→</div>
   <div class="k koyu iki" style="left:112.9pt;top:89pt;width:107.5pt;height:26pt;background:#b02418">Safety PLC<small>emniyet kumandası</small></div>
   <div class="ok" style="left:226.2pt;top:93.7pt">→</div>
-  <div class="k acik2" style="left:240.8pt;top:89pt;width:100pt;height:26pt">STO / Kontaktör</div>
+  <div class="k acik2" style="left:240.8pt;top:89pt;width:100pt;height:26pt">STO / Emniyet valfi</div>
   <div class="ok" style="left:346.5pt;top:93.7pt">→</div>
   <div class="k koyu" style="left:360.8pt;top:89pt;width:78.8pt;height:26pt;background:#1f3350">Safe State</div>
 </div>

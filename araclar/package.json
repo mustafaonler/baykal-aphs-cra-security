@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "pdf-lib": "1.17.1",
+    "pdfjs-dist": "3.11.174",
     "playwright-core": "1.49.1"
   }
 }
