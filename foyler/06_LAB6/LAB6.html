@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAB 6 · CRA Incident Simulation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:wght@400;700&family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ortak/foy.css">
+<style> .soru .metin b { color: var(--lacivert); } .uyari-kutu.son { margin-top: 0; } </style>
+</head>
+<body style="--lab:#b02418">
+
+<header class="bant">
+  <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 12.5 7.5 12.5 10 5.5 14 18.5 16.5 12.5 21 12.5"/></svg></div>
+  <div class="ust">LABORATUVAR 6 · PAKETPRO 3000 · Paketleme Makinesi</div>
+  <h1>CRA Incident Simulation</h1>
+  <div class="cikti">Çıktı: Incident Workflow</div>
+</header>
+
+<section class="kimlik">
+  <div><span>Ad Soyad</span><em>Mustafa Önler</em></div>
+  <div><span>Grup</span><em>Gece-B</em></div>
+  <div><span>Tarih</span></div>
+</section>
+
+<div class="uyari-kutu">Senaryo: Saat 10:15. Baykal Abkant Pres'in servis hesabına gece 03:00'te tanınmayan bir konumdan girilmiş. PLC konfigürasyonu değişmiş olabilir; lazer koruma (ışık perdesi) parametreleri henüz doğrulanmadı. Makine çalışıyor. Vardiya sorumlusu sizsiniz.</div>
+
+<div class="baglam"><b>Kavram:</b> Bir olayda en değerli iki şey <b>zaman</b> ve <b>kanıt</b>tır. CRA'nın 24s / 72s / 14 gün yükümlülükleri, iyi bir müdahale akışının doğal kilometre taşlarıdır — ezber değil.</div>
+
+<h2 class="bolum">Görev — zaman çizgisini doldurun</h2>
+
+<div class="soru"><div class="no">1</div><div class="metin"><b>10:15 — ilk 15 dk:</b> Kimi ararsınız? İlk üç eyleminiz?</div>
+  <div class="cevap"><ul><li><b>Arama:</b> Derhal Fabrika Üretim Müdürünü ve IT/Siber Güvenlik birimini (SOC) ararım.</li><li><b>Eylem 1:</b> Operatöre acil talimat vererek <b>makineyi güvenli duruma (Safe State) geçiririm</b> (Acil stop butonuna basarak hidrolik üst çeneyi kilitlerim ve makinenin enerjisini keserim).</li><li><b>Eylem 2:</b> Makinenin CNC kontrol ünitesi ve uzak bakım modülünün fabrika ağı ve internet ile olan <b>fiziksel/ağ bağlantısını anında keserim</b> (izolasyon).</li><li><b>Eylem 3:</b> Makineyi resetlemem veya kapatmam; adli bilişim (forensics) için logların silinmemesi adına mevcut haliyle bırakırım ve güvenlik şeridi çekerim.</li></ul></div></div>
+
+<div class="soru"><div class="no">2</div><div class="metin"><b>İlk 2 saat:</b> Egzoz güvende mi — nasıl doğrularsınız? Hangi kanıt korunur? Hangi hesap kapatılır?</div>
+  <div class="cevap"><ul><li><b>Emniyet Doğrulaması:</b> Yetkili teknisyenle birlikte Safety PLC parametrelerini ve ışık bariyerinin muting (körleme) hassasiyetlerini çevrimdışı (offline) bir terminalden okuyarak değiştirilip değiştirilmediğini doğrularım.</li><li><b>Korunan Kanıt:</b> CNC işletim sisteminin, uzak bakım modülünün ve PLC'nin gece 03:00'e ait <b>güvenlik ve olay loglarını (Event Logs)</b>, ağ trafik kayıtlarını (pcap) ve bellek (RAM) imajlarını kopyalayarak koruma altına alırım.</li><li><b>Kapatılan Hesap:</b> Gece giriş yapılan şüpheli "servis hesabı" ve VPN/uzak erişim portları derhal devre dışı bırakılır.</li></ul></div></div>
+
+<div class="soru"><div class="no">3</div><div class="metin"><b>24 saat — CRA erken uyarı:</b> Hangi bilgi hazır olmalı?</div>
+  <div class="cevap">Cyber Resilience Act (CRA) kapsamında 24 saat içinde yetkili kurumlara (CSIRT/ENISA) sunulması gereken <b>Erken Uyarı Bildirimi (Early Warning)</b> için şu bilgiler hazır olmalıdır: Saldırının gerçekleştiği cihaz (Baykal APHS), tespit edilen ihlalin türü (yetkisiz erişim/parametre değişimi ihtimali), olayın tespit saati ve şu anki durumu (makine izole edildi, üretim durduruldu).</div></div>
+
+<div class="soru"><div class="no">4</div><div class="metin"><b>72 saat — CRA bildirim:</b> Kök neden, etki, önlem — kim ne yapıyor?</div>
+  <div class="cevap"><ul><li><b>Kök Neden:</b> Açık bırakılan uzak bakım portu ve sızdırılan yetkili servis parolası üzerinden ağa girilmesi.</li><li><b>Etki:</b> Üretim hattında X saat duruş ve potansiyel (gerçekleşmeden engellenen) S=3 seviyesinde ölümcül ezilme tehlikesi.</li><li><b>Önlem:</b> Parolaların sıfırlanması, MFA (Çok Faktörlü Doğrulama) kurulumu ve Jump Server izolasyonu.</li><li><b>Kim Ne Yapıyor?:</b> IT/Siber Güvenlik birimi bu detaylı teknik ve adli bilişim raporunu hazırlayarak CRA gereği yetkili kurumlara <b>Olay Bildirimi (Incident Notification)</b> sunar.</li></ul></div></div>
+
+<div class="soru"><div class="no">5</div><div class="metin"><b>14 gün — son rapor:</b> Hangi loglar/kayıtlar korunmuş olmalı?</div>
+  <div class="cevap">Kapanış raporu için saldırının başladığı andan itibaren korunan şu kayıtlar sunulmalıdır: Ağ güvenlik duvarı (Firewall) erişim logları, CNC ve Safety PLC parametre değişiklik logları, VPN/MFA kimlik doğrulama kayıtları, sistem olay görüntüleyici (Event Viewer) kayıtları ve adli imajlar zinciri.</div></div>
+
+<div class="son-blok">
+<div class="uyari-kutu son"><b>En sık hata:</b> "Resetleyip devam edelim" — o düğme, kanıtı sonsuza dek siler. Önce emniyet, hemen sonra kanıt.</div>
+
+<div class="kanit"><svg viewBox="0 0 24 24" fill="none" stroke="#0e7c7b" stroke-width="2" stroke-linejoin="round"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8l-5-5z"/><path d="M14 3v5h5"/></svg><span>Bu föyün çıktısı <b>Incident Workflow</b> → Evidence Pack <b>EP 13 Incident Response</b> başlığına oturur.</span></div>
+</div>
+
+</body>
+</html>
